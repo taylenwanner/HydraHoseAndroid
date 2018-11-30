@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "566924181287",
+    "firebase_url": "https://hydrahose-7d15e.firebaseio.com",
+    "project_id": "hydrahose-7d15e",
+    "storage_bucket": "hydrahose-7d15e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566924181287:android:9affed6bbd49a55c",
+        "android_client_info": {
+          "package_name": "com.example.taylen.hydrahose"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566924181287-mn8v7m835o4jtou6sa9utjmlnpc7ruhc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.taylen.hydrahose",
+            "certificate_hash": "b5f9300c9bc95544f7e3002735d01750ef73761f"
+          }
+        },
+        {
+          "client_id": "566924181287-tnnop95ia53e6fmnpd9lasfdpej88c8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMKBEephmSvPB9q2DKElURh6D7TnXXl7U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566924181287-tnnop95ia53e6fmnpd9lasfdpej88c8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

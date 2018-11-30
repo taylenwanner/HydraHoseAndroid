@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">HydraHose</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="required">All fields are required.</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="guest_browse">Browse As Guest</string>
+    <string name="email_registration">Email Registration</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="new_account">New Account</string>
+</resources>

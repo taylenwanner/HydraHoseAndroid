@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/txtEmailLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:paddingTop="15dp"/>
+
+    <EditText
+        android:id="@+id/txtPasswordLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:paddingTop="15dp"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:backgroundTint="@color/colorAccent2"
+        android:textColor="@color/colorAccent"
+        android:paddingTop="15dp"/>
+
+    <TextView
+        android:id="@+id/lnkRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_account"
+        android:gravity="center"
+        android:textColor="@color/colorAccent2"
+        android:textSize="18dp"
+        android:paddingTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/lnkForgotPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        android:gravity="center"
+        android:textColor="@color/colorAccent2"
+        android:textSize="18dp"
+        android:paddingTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/lnkGuestBrowse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guest_browse"
+        android:gravity="center"
+        android:textColor="@color/colorAccent2"
+        android:textSize="18dp"
+        android:paddingTop="15dp"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:visibility="invisible"/>
+
+</LinearLayout>

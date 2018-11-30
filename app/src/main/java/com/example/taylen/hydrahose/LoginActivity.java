@@ -1,5 +1,6 @@
 package com.example.taylen.hydrahose;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -51,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(!isEmpty(txtEmail.getText().toString()) && !isEmpty(txtPassword.getText().toString())) {
                     Log.d("test", "Attempting to authenticate.");
 
+                    closeKeyboard();
                     showDialog();
 
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(txtEmail.getText().toString(),
@@ -60,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     //TODO: After login successful, navigate to the product screen
                                     Log.d("test", "Login was successful.");
-                                    //hideDialog();
+                                    hideDialog();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -122,8 +125,12 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void hideKeyboard() {
-        //TODO: FIX
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if(view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     //--------Firebase Setup-----------
@@ -134,7 +141,15 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if(user != null) {
-                    Log.d("test", user.getUid().toString());
+                    if(user.isEmailVerified()){
+                        Log.d("test", user.getUid().toString());
+                        Toast.makeText(LoginActivity.this, "Authenticated with: " + user.getEmail(),
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Check your email for a verificiation link", Toast.LENGTH_SHORT).show();
+                        FirebaseAuth.getInstance().signOut();
+                    }
+
                 } else {
                     Log.d("test", "Signed out");
                 }

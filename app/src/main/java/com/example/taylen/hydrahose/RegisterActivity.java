@@ -1,11 +1,13 @@
 package com.example.taylen.hydrahose;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -16,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -40,6 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("test", "Attempting to register.");
+
+                closeKeyboard();
 
                 //Check to see if all fields have been filled in
                 if(!isEmpty(txtEmail.getText().toString())
@@ -73,7 +78,9 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     Log.d("test", "AuthState: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
 
+                    sendVerificationEmail();
                     FirebaseAuth.getInstance().signOut();
+                    redirectLoginScreen();
                 } else {
                     Toast.makeText(RegisterActivity.this, "Unable to register", Toast.LENGTH_SHORT).show();
                 }
@@ -81,6 +88,24 @@ public class RegisterActivity extends AppCompatActivity {
                 hideDialog();
             }
         });
+    }
+
+    private void sendVerificationEmail() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user != null) {
+            user.sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(RegisterActivity.this, "Sent Verification Email", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "Couldn't  Send Verification Email", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
     }
 
     private void redirectLoginScreen(){
@@ -107,6 +132,14 @@ public class RegisterActivity extends AppCompatActivity {
     private void hideDialog(){
         if(pgProgressBar.getVisibility() == View.VISIBLE){
             pgProgressBar.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if(view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 }

@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 Log.d("test", "" + task.isSuccessful());
 
                 if(task.isSuccessful()) {
@@ -85,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Unable to register", Toast.LENGTH_SHORT).show();
                 }
 
-                hideDialog();
+                //hideDialog();
             }
         });
     }
